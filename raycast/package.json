@@ -1,0 +1,45 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "select-explainer",
+  "title": "Select Explainer",
+  "description": "Ask about highlighted text in any app — Slack, desktop LLM apps, PDFs, anywhere. Answered by Ollama or the Claude API, never your chat conversation.",
+  "icon": "icon.png",
+  "author": "vineeth",
+  "categories": ["Productivity"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "ask-selection",
+      "title": "Ask About Selection",
+      "subtitle": "Select Explainer",
+      "description": "Explain the currently selected text in the frontmost app.",
+      "mode": "view"
+    },
+    {
+      "name": "saved-notes",
+      "title": "Saved Notes",
+      "subtitle": "Select Explainer",
+      "description": "Browse, continue, and delete past side-threads.",
+      "mode": "view"
+    },
+    {
+      "name": "settings",
+      "title": "Select Explainer Settings",
+      "subtitle": "Select Explainer",
+      "description": "Choose the provider and model that answer your questions.",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
+    "@raycast/api": "^1.90.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.6.0"
+  },
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build -e dist"
+  }
+}

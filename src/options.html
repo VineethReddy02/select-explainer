@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Select Explainer — Settings</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #faf9f5;
+        --card: #ffffff;
+        --fg: #1a1a1a;
+        --muted: #6b6b6b;
+        --border: #e0e0dc;
+        --accent: #c96442;
+        --ok: #2e7d5b;
+        --bad: #c0392b;
+        --code-bg: #f2f1ec;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1f1f1d;
+          --card: #262624;
+          --fg: #f0efea;
+          --muted: #a0a09a;
+          --border: #3d3d3a;
+          --accent: #e08a6b;
+          --ok: #6cc79b;
+          --bad: #e57368;
+          --code-bg: #161614;
+        }
+      }
+      body {
+        margin: 0;
+        padding: 48px 24px;
+        background: var(--bg);
+        color: var(--fg);
+        font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      }
+      main { max-width: 560px; margin: 0 auto; }
+      h1 { font-size: 20px; margin: 0 0 4px; }
+      .sub { color: var(--muted); margin: 0 0 28px; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+      label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; }
+      .hint { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+      .hint a { color: var(--accent); }
+      input, select {
+        width: 100%;
+        padding: 9px 11px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--fg);
+        font-size: 13px;
+        font-family: inherit;
+      }
+      input:focus, select:focus { outline: none; border-color: var(--accent); }
+      .field + .field { margin-top: 18px; }
+      button {
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        padding: 9px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      button.secondary {
+        background: transparent;
+        color: var(--fg);
+        border: 1px solid var(--border);
+      }
+      .row { display: flex; align-items: center; gap: 12px; }
+      .saved { color: var(--muted); font-size: 12px; opacity: 0; transition: opacity .2s; }
+      .saved.show { opacity: 1; }
+
+      .providers { display: flex; gap: 10px; }
+      .providers label {
+        flex: 1; margin: 0; cursor: pointer; font-weight: 500;
+        border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px;
+      }
+      .providers label:has(input:checked) {
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+      .providers input { width: auto; margin-right: 8px; }
+      .providers .why { display: block; color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 3px; }
+
+      .status { font-size: 12px; margin: 10px 0 0; white-space: pre-wrap; }
+      .status.ok { color: var(--ok); }
+      .status.bad { color: var(--bad); }
+      code, kbd {
+        background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px;
+        padding: 1px 5px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 12px;
+      }
+      pre {
+        background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+        padding: 10px 12px; overflow-x: auto; font-size: 12px; margin: 8px 0 0;
+        font-family: ui-monospace, SFMono-Regular, monospace;
+      }
+      ol { padding-left: 18px; color: var(--muted); font-size: 13px; margin: 0; }
+      ol li { margin: 5px 0; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Select Explainer</h1>
+      <p class="sub">Highlight text anywhere, ask about it, keep the answer out of your conversation.</p>
+
+      <div class="card">
+        <div class="field">
+          <label>Where answers come from</label>
+          <div class="providers">
+            <label>
+              <input type="radio" name="provider" value="ollama" />Ollama
+              <span class="why">Free and private. Runs on this Mac. The default.</span>
+            </label>
+            <label>
+              <input type="radio" name="provider" value="anthropic" />Claude API
+              <span class="why">Best quality. Costs about half a cent per question.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Claude API ------------------------------------------------------->
+      <div class="card" id="anthropic-card">
+        <div class="field">
+          <label for="apiKey">Anthropic API key</label>
+          <input id="apiKey" type="password" placeholder="sk-ant-…" autocomplete="off" spellcheck="false" />
+          <p class="hint">
+            Stored in this browser only, never sent anywhere except api.anthropic.com.
+            Get one at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noreferrer">console.anthropic.com</a>.
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="model">Model</label>
+          <select id="model">
+            <option value="claude-opus-5">Claude Opus 5 — best answers</option>
+            <option value="claude-sonnet-5">Claude Sonnet 5 — balanced</option>
+            <option value="claude-haiku-4-5">Claude Haiku 4.5 — fastest, cheapest</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="effort">Effort</label>
+          <select id="effort">
+            <option value="low">Low — snappiest, good for quick lookups</option>
+            <option value="medium">Medium</option>
+            <option value="high">High — slower, for harder questions</option>
+          </select>
+          <p class="hint">Ignored by Haiku, which has no effort setting.</p>
+        </div>
+      </div>
+
+      <!-- Ollama ----------------------------------------------------------->
+      <div class="card" id="ollama-card">
+        <div class="field">
+          <label for="ollamaUrl">Ollama server</label>
+          <div class="row">
+            <input id="ollamaUrl" type="text" placeholder="http://localhost:11434" spellcheck="false" />
+            <button class="secondary" id="test">Test</button>
+          </div>
+          <p class="status" id="ollamaStatus"></p>
+          <div id="originHelp" hidden>
+            <p class="hint">Ollama blocks browser extensions until you allow them. One time, then restart Ollama:</p>
+            <pre id="originCmd">launchctl setenv OLLAMA_ORIGINS "chrome-extension://*"</pre>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ollamaModel">Model</label>
+          <select id="ollamaModel"></select>
+          <p class="hint">
+            Only models already pulled appear here. Add more with <code>ollama pull llama3.2</code>,
+            then press Test again.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <button id="save">Save</button>
+          <span class="saved" id="saved">Saved</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <label>How to use it</label>
+        <ol>
+          <li>Highlight any text on any page.</li>
+          <li>Click the <strong>Ask</strong> pill, or press <kbd>⌘⇧E</kbd> / <kbd>Ctrl+Shift+E</kbd>.</li>
+          <li>Pick a quick action or type your own question. Follow-ups stay inside the popover.</li>
+          <li>Press <kbd>Esc</kbd> to close — the whole side-thread is discarded.</li>
+        </ol>
+      </div>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

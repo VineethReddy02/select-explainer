@@ -1,0 +1,79 @@
+Select Explainer for Raycast — installing
+=========================================
+
+Highlight text in ANY app — Slack, ChatGPT, Claude, PDFs, your editor — hit a
+hotkey, and ask a question about it. Answers stream into Raycast and are never
+added to any chat conversation.
+
+
+What you need first
+-------------------
+  1. Raycast            https://raycast.com (free)
+  2. Node.js            in Terminal:  brew install node
+                        (check with:  node --version)
+
+
+Install (one time)
+------------------
+  1. Unzip this folder anywhere (it can be deleted after installing)
+  2. Open Terminal in this folder and run:
+
+       npm install
+       npm run dev
+
+  3. Raycast opens with the extension imported. Press Ctrl+C in the Terminal
+     to stop the dev process — the extension STAYS installed.
+
+
+Give it a hotkey (recommended)
+------------------------------
+  Raycast Settings → Extensions → Select Explainer → Ask About Selection
+  → click "Record Hotkey" → press something like Option+A
+
+  From then on: highlight text anywhere → hotkey → ask.
+
+
+One macOS permission
+--------------------
+  The first time you use it, reading the highlighted text needs:
+
+    System Settings → Privacy & Security → Accessibility → turn ON Raycast
+    (add it with + if it isn't listed)
+
+  Without this you'll see "Nothing is selected" even when text is highlighted.
+  In apps that hide their selection (Slack does), the extension briefly flips
+  back to the app to copy the selection — you'll see a quick flicker. Normal.
+
+
+Choose where answers come from
+------------------------------
+  Open Raycast → "Select Explainer Settings" (or ⌘⇧, from the ask view).
+  The form shows only what the chosen provider needs, and changes apply
+  from your very next question.
+
+  Ollama (default)   Free and private, runs on your Mac.
+                     Terminal:  brew install ollama
+                                ollama pull llama3.2
+                     and keep the Ollama app running. Installed models
+                     are listed for you in Settings.
+
+  Claude API         Best answers. Paste an API key and pick a model.
+                     Roughly half a cent per question.
+
+
+Using it
+--------
+  - Highlight text → hotkey → the picker opens showing what it captured
+  - Type your question and press Enter
+  - Follow-ups: ⌘K → Ask Follow-Up
+  - "Paste Thread into Frontmost App" types the whole Q&A back into the app
+    you came from — it never sends anything itself
+  - Every answered thread is saved on your Mac. Highlight the same text again
+    and the picker offers "Continue saved thread"; the "Saved Notes" command
+    in Raycast lists them all — continue, paste, or delete from there
+
+
+Updating later
+--------------
+  Get the new zip, and from the new folder run `npm install && npm run dev`
+  again. Same one-time flow; your settings are kept by Raycast.

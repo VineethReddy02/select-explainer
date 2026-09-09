@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Select Explainer",
+  "version": "0.7.0",
+  "description": "Highlight text, ask a throwaway question about it, get the answer in place.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9+5xbVTB7ICSEsfd8dHbmdg3877ErmP05Vmqa81hlJL3BSz+CecpcNv6Rr4buP2Ac7d8YsKvXZwnmL8zubYlfl39J2ccEvHT7Qku88GrwcA3p+eigNAun18TtDJ+CiWxAROscXuk0s7LHWaJPZKBcH8eVR9Il8X2wE41FRAbywENZbdJl02jTXj41RIfLBZ0F/M3Q4safaS+10aTO/pVDYSX2eof0nY7eUbiUIql72osGwberjuvA4B4pwRnzmo9Mn75SJpphyyOXWOPeZqEPXhVvzGdrzkigFcR++GzYWExPUKbEC9CfI+fShghiu5Jo6KJzp5+u/xtSqiL/IFzywIDAQAB",
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "local-provider",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "Select Explainer settings"
+  },
+  "commands": {
+    "ask-about-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "Ask about the highlighted text"
+    }
+  }
+}

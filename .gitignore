@@ -1,0 +1,8 @@
+node_modules/
+dist/
+select-explainer.zip
+select-explainer-raycast.zip
+extension-key.pem
+.extension-pubkey.txt
+.claude/
+.DS_Store

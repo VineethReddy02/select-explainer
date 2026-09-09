@@ -1,0 +1,22 @@
+{
+  "name": "select-explainer",
+  "version": "0.7.0",
+  "description": "Highlight text, ask a question about it, and keep the answer pinned to the page - without growing the conversation you're reading.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "test": "node test/unit.mjs && node test/anchor.mjs && node test/restore.mjs && node test/attach.mjs && node test/orphan.mjs && node test/ui.mjs",
+    "test:live": "node build.mjs && node test/live.mjs",
+    "package": "node build.mjs && rm -f select-explainer.zip && cd dist && zip -qr ../select-explainer.zip . -x '_metadata/*' '.*' && cd .. && echo 'wrote select-explainer.zip'",
+    "package:raycast": "rm -f select-explainer-raycast.zip && cd raycast && zip -qr ../select-explainer-raycast.zip package.json package-lock.json tsconfig.json icon.png INSTALL.txt src && cd .. && echo 'wrote select-explainer-raycast.zip'"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "jsdom": "^27.0.0"
+  }
+}

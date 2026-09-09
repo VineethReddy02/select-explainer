@@ -1,0 +1,65 @@
+Select Explainer — installing
+=============================
+
+Highlight text on any page, ask a question about it, and get the answer right
+there without adding anything to your ChatGPT or Claude conversation.
+
+
+1. Put this folder somewhere permanent
+--------------------------------------
+Chrome loads the extension from this folder every time it starts, so it has to
+stay where you put it.
+
+  Good:  your home folder, Documents, or a new folder like "Chrome Extensions"
+  Bad:   Downloads (you'll clean it out one day and the extension will vanish)
+  Bad:   inside Google Drive or Dropbox (sync can move or offload the files
+         while Chrome is using them)
+
+
+2. Load it into Chrome
+----------------------
+  a. Open a new tab and go to:  chrome://extensions
+  b. Turn on "Developer mode" using the switch in the top right
+  c. Click "Load unpacked"
+  d. Choose this folder (the one containing this file)
+
+Chrome will mention that developer-mode extensions are running. That's expected
+for an extension installed this way rather than from the Chrome Web Store.
+
+
+3. Choose where answers come from
+---------------------------------
+The options page opens automatically. Pick one:
+
+  Ollama       The default. Free and completely private, but needs Ollama
+               installed and running on this same Mac. Press "Test" to check
+               the connection. Don't have it?  brew install ollama, then
+               ollama pull llama3.2
+
+  Claude API   Paste an API key. Best answers. Roughly half a cent per question.
+               The right choice if you don't want to run a local model.
+
+Press Save. That's it.
+
+
+Using it
+--------
+  - Highlight any text. A small "Ask" button appears.
+  - Click it, or press Cmd+Shift+E.
+  - Pick a suggested question or type your own.
+  - Ask follow-ups inside the popup. They stay in the popup.
+  - Press Esc to close. The highlight stays marked on the page.
+  - Click a marked highlight later to reopen its answer.
+  - The trash icon deletes that note for good.
+  - "Attach to chat" copies a thread into the chat's message box if you decide
+    it belongs in the main conversation. It doesn't send it. You do.
+
+Your notes are saved in this browser only. Nothing is sent anywhere except to
+the model provider you chose in step 3.
+
+
+Updating later
+--------------
+Replace the contents of this same folder with the new files, then go to
+chrome://extensions and click the refresh arrow on the Select Explainer card.
+Your settings and saved notes carry over.
